@@ -3,6 +3,10 @@ var exphbs = require("express-handlebars");
 var mysql = require("mysql");
 
 var app = express();
+app.use(express.static('public'))
+
+app.use(express.urlencoded({ extenede: true }))
+app.use(express.json())
 
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
