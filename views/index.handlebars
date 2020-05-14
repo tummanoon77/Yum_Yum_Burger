@@ -1,7 +1,48 @@
-<!-- 5. Output the animalType string, pet boolean, and fierceness number to the page for all the pets. -->
-{{#each index}}
-<p>animalType: {{name}}</p>
-<p> </p>
-<p> </p>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="burger-image">
+ <div class="burger-text">
+<div class="jumbotron">
+<div class="display-4 text-center">
+ <img src="../assets/image/hamburger.png" alt="Burger" width="300" height="200"</image>
+<h1>Burgers!</h1>
+</div>
 
-{{/each}}
+</div>
+
+
+<h2>Available Burgers</h2>
+
+<ul>
+  {{#each burgers}}
+    
+  {{/each}}
+</ul>
+
+
+<h2>Devoured Burgers!</h2>
+
+<ul>
+  {{#each burgers}}
+   
+  {{/each}}
+</ul>
+
+<h2>Add a Burger</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="devoured"></label><br>
+    <input type="radio" name="devoured" value="1" checked> Devoured!<br>
+    <input type="radio" name="devoured" value="0"> Burger
+  </div>
+
+  <button type="submit">Add Burger</button>
+</form>
+</div>
+</div>
+

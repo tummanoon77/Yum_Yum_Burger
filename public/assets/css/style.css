@@ -1,0 +1,70 @@
+li {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 10px;
+    text-align: center;
+    padding: 8px;
+    border-spacing: 5px;
+    background: burlywood;
+    width: 500px;
+    margin: auto;
+
+  }
+  
+  h1 {
+    text-align: center;
+  }
+ 
+  h2 {
+    text-align: center;
+  }
+  
+ .create-form {
+   display: table;
+   margin: 0 auto;
+   margin-bottom: 20px;
+
+ }
+
+  
+  .form-group {
+    margin-bottom: 20px;
+  
+   
+  }
+  
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  
+
+
+/*  background image */
+
+body {
+  background: url("/assets/img/burgerBackground.jpg");
+  background: #cccccc;
+  height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.burger-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
