@@ -31,16 +31,30 @@ app.get('/', function (req, res) {
     res.render('index', {burgers: data});
   })
 })
+app.post("/", function(req, res) {
+  // Test it
+  // console.log('You sent, ' + req.body.task);
 
-app.post('/api/burger', function (req, res) {
+  // Test it
+  // return res.send('You sent, ' + req.body.task);
 
-  console.log(req.body)
-  burger.create(['name', 'devoured'  ],
-   [req.body.name, req.body.Burgers ], function (result) {
-    // Send back the ID of the new quote
-    res.json({ id: result.insertId })
-  })
-})
+  // When using the MySQL package, we'd use ?s in place of any values to be inserted, which are then swapped out with corresponding elements in the array
+  // This helps us avoid an exploit known as SQL injection which we'd be open to if we used string concatenation
+  // https://en.wikipedia.org/wiki/SQL_injection
+  connection.query("INSERT INTO burgers (name) VALUES (?)", [req.body.name], function(err, result) {
+    if (err) throw err;
+
+    res.redirect("/");
+  });
+});
+app.post("/", function(req, res) {
+  connection.query("DELETE FROM burgers WHERE (name)", [req.body.name], function(err, result) {
+    if (err) throw err;
+
+    res.redirect("/");
+  });
+});
+
 app.listen(PORT, function() {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);
