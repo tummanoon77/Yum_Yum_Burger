@@ -1,15 +1,16 @@
-const mysql = require('mysql')
-
-const connection;
-
-if (process.env.JAWSDB_URL) {
-  connection = mysql.createConnection(process.env.JAWSDB_URL)
-} else {
-  connection = mysql.createConnection({
-    host: 'localhost',
+module.exports = {
+  db:{
+    host: "localhost",
     port: 3306,
-    user: 'root',
-    database: 'burgers_db',
-    password: 'AuraZaira77'
-  })
+    user: "root",
+    password: "AuraZaira77",
+    database: "burgers_db"
+  },
+heroku:{
+  host: "qn66usrj1lwdk1cc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  port: 3306,
+  user: "gjn4tphdt8oqv02a",
+  password: "syochsim9y8j8h0z",
+  database: "a922c42daz6zbgyj"
+ }
 }

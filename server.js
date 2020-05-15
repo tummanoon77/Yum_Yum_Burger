@@ -2,38 +2,18 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const config = require("./config/connection");
 const app = express();
 app.use(express.static('public'))
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
 const PORT = process.env.PORT || 8080;
-const dbConfig = (process.env.NODE_ENV === "production") ? dbConfig.heroku : dbConfig.db
+const dbConfig = (process.env.NODE_ENV === "production") ? config.heroku : config.db
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 app.use(express.urlencoded({ extenede: true }))
 app.use(express.json())
-
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "AuraZaira77",
-  database: "burgers_db"
-});
-
-const productionConfig = {
-  host: "qn66usrj1lwdk1cc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  port: "3306",
-  user: "gjn4tphdt8oqv02a",
-  password: "syochsim9y8j8h0z",
-  database: "a922c42daz6zbgyj"
-}
-let dbConfig = localConfig
-if ( process.env.NODE_ENV === "production"){
-  dbConfig = productionConfig
-}
 
 const connection = mysql.createConnection(dbConfig);
 connection.connect(function(err){
