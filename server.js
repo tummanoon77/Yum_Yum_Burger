@@ -73,10 +73,17 @@ app.delete("/api/burgers/:id", function(req, res) {
 
   });
 });
+app.get("/api/burgers/:devoured", function(req, res) {
+  burgers.forEach( burger =>{
 
+    if ( burger.devoured === "TRUE") {
+      
+  res.render("index",{burgers:burger});
+    }
+  })
+});
 
 app.listen(PORT, function() {
     // Log (server-side) when our server has started
     console.log("Server listening on: http://localhost:" + PORT);
   });
-  

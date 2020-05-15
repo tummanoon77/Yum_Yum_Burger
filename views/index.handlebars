@@ -26,7 +26,7 @@
 
 <ul>
   {{#each burgers}}
-   <li>{{name}}</li>
+   <li>{{this.Devoured}}</li>
   {{/each}}
 </ul>
 
@@ -50,7 +50,7 @@
 		{{/each}}
 	</select>
   <div class="form-group">
-    <label for="ca">Burger Name:</label>
+    <label for="ca">Update Name:</label>
     <input type="text" id="ca" name="name">
   </div>
   
@@ -106,14 +106,14 @@
     // Get the ID by finding an element with a "name" attribute equal to the string "id"
     var id = $("[name=id]").val().trim();
 
-    var updatedBurger = {
+    var updatedName = {
       name: $("#updateburger [name=name]").val().trim()
     };
 
     // Send the PUT request.
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
-      data: updatedBurger
+      data: updatedName
     }).then(
       function() {
         console.log("updated id ", id);
