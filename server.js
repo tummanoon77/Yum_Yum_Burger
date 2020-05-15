@@ -31,29 +31,49 @@ app.get('/', function (req, res) {
     res.render('index', {burgers: data});
   })
 })
-app.post("/", function(req, res) {
-  // Test it
-  // console.log('You sent, ' + req.body.task);
-
-  // Test it
-  // return res.send('You sent, ' + req.body.task);
-
-  // When using the MySQL package, we'd use ?s in place of any values to be inserted, which are then swapped out with corresponding elements in the array
-  // This helps us avoid an exploit known as SQL injection which we'd be open to if we used string concatenation
-  // https://en.wikipedia.org/wiki/SQL_injection
+app.post("/api/burgers", function(req, res) {
+  
   connection.query("INSERT INTO burgers (name) VALUES (?)", [req.body.name], function(err, result) {
-    if (err) throw err;
+    if (err) {
+      return res.status(500).end();
+    }
 
-    res.redirect("/");
+    // Send back the ID of the new plan
+    res.json({ id: result.insertId });
+    console.log({ id: result.insertId });
   });
 });
-app.post("/", function(req, res) {
-  connection.query("DELETE FROM burgers WHERE (name)", [req.body.name], function(err, result) {
-    if (err) throw err;
+app.put("/api/burgers/:id", function(req, res) {
+  connection.query("UPDATE plans SET burger = ? WHERE id = ?", [req.body.name, req.params.id], function(err, result) {
+    if (err) {
+      // If an error occurred, send a generic server failure
+      return res.status(500).end();
+    }
+    else if (result.changedRows === 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    }
+    res.status(200).end();
 
-    res.redirect("/");
   });
 });
+
+// Delete a plan
+app.delete("/api/burgers/:id", function(req, res) {
+  connection.query("DELETE FROM burgers WHERE id = ?", [req.params.id], function(err, result) {
+    if (err) {
+      // If an error occurred, send a generic server failure
+      return res.status(500).end();
+    }
+    else if (result.affectedRows === 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    }
+    res.status(200).end();
+
+  });
+});
+
 
 app.listen(PORT, function() {
     // Log (server-side) when our server has started
