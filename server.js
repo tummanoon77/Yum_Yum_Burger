@@ -23,13 +23,7 @@ connection.connect(function(err){
   }
   console.log("connected as id " + connection.threadId);
 });
-app.get("/", function (req, res) {
-  burger.all(function (burgers) {
-      const devouredBurgers = burgers.filter(burger => burger.devoured === True);
-      const uneatenBurgers = burgers.filter(burger => burger.devoured === False);
-      res.render("index", { devouredBurgers, uneatenBurgers })
-  })
-})
+
 app.get('/', function (req, res) {
   connection.query("SELECT * FROM burgers;", function(err, data) {
     if (err) throw err;
