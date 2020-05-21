@@ -23,7 +23,13 @@ connection.connect(function(err){
   }
   console.log("connected as id " + connection.threadId);
 });
-
+app.get("/", function (req, res) {
+  burger.all(function (burgers) {
+      const devouredBurgers = burgers.filter(burger => burger.devoured === True);
+      const uneatenBurgers = burgers.filter(burger => burger.devoured === False);
+      res.render("index", { devouredBurgers, uneatenBurgers })
+  })
+})
 app.get('/', function (req, res) {
   connection.query("SELECT * FROM burgers;", function(err, data) {
     if (err) throw err;
@@ -31,6 +37,8 @@ app.get('/', function (req, res) {
     res.render('index', {burgers: data});
   })
 })
+
+
 app.post("/api/burgers", function(req, res) {
   
   connection.query("INSERT INTO burgers (name) VALUES (?)", [req.body.name], function(err, result) {
@@ -44,7 +52,7 @@ app.post("/api/burgers", function(req, res) {
   });
 });
 app.put("/api/burgers/:id", function(req, res) {
-  connection.query("UPDATE plans SET burger = ? WHERE id = ?", [req.body.name, req.params.id], function(err, result) {
+  connection.query("UPDATE burgers SET name = ? WHERE id = ?", [req.body.name, req.params.id], function(err, result) {
     if (err) {
       // If an error occurred, send a generic server failure
       return res.status(500).end();
@@ -73,15 +81,7 @@ app.delete("/api/burgers/:id", function(req, res) {
 
   });
 });
-app.get("/api/burgers/:devoured", function(req, res) {
-  burgers.forEach( burger =>{
 
-    if ( burger.devoured === "TRUE") {
-      
-  res.render("index",{burgers:burger});
-    }
-  })
-});
 
 app.listen(PORT, function() {
     // Log (server-side) when our server has started
