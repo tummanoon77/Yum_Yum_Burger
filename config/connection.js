@@ -1,16 +1,22 @@
-module.exports = {
-  db:{
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "AuraZaira77",
-    database: "burgers_db"
-  },
-heroku:{
-  host: "qn66usrj1lwdk1cc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+// Set up MySQL connection.
+var mysql = require("mysql");
+
+var connection = mysql.createConnection({
+  host: "localhost",
   port: 3306,
-  user: "gjn4tphdt8oqv02a",
-  password: "syochsim9y8j8h0z",
-  database: "a922c42daz6zbgyj"
- }
-}
+  user: "root",
+  password: "AuraZaira77",
+  database: "burgers_db"
+});
+
+// Make connection.
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
+});
+
+// Export connection for our ORM to use.
+module.exports = connection;
