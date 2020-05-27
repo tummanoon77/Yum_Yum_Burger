@@ -1,0 +1,19 @@
+ {
+    
+    "development": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "AuraZaira77",
+        "database": "burgers_db"
+    },
+
+    "production": {
+        "host": "qn66usrj1lwdk1cc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        "database": "a922c42daz6zbgyj",
+        "username": "gjn4tphdt8oqv02a",
+        "password": "syochsim9y8j8h0z",
+        "port": 3306,
+        "dialect": "mysql"
+    }
+}
