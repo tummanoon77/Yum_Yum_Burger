@@ -2,10 +2,10 @@
 Node Express Handlebars
 # tummanoon77
 My email address:  nukgroup@yahoo.com
-My GITHUB URL : https://tummanoon77.github.io/homework13
+My GITHUB URL : https://tummanoon77.github.io/Yum_Yum_Burger/git 
 
-![](https://img.shields.io/github/followers/tummanoon77?style=social)
-
+![](https://img.shields.io/github/followers%20Tummanoongit clone/tummanoon77?style=social)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/tummanoon77/Yum_Yum_Burger)
 
 ## Description
 create a burger logger with MySQL, Node, Express, Handlebars
